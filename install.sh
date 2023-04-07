@@ -29,7 +29,9 @@ if [ ! -d "$VPN_DIR" ]; then
   if [ ! $? -eq 0 ]; then
     # 解压缩失败，提示用户重新输入密码
     echo "Incorrect password."
-    rm -rf vpn
+    echo ''
+    rm -rf ${PWD}/vpn
+    echo "rm -rf ${PWD}/vpn"
     exit 1
   fi
 
