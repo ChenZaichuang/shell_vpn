@@ -31,7 +31,6 @@ if [ ! -d "$VPN_DIR" ]; then
     echo "Incorrect password."
     echo ''
     rm -rf ${PWD}/vpn
-    echo "rm -rf ${PWD}/vpn"
     exit 1
   fi
 
