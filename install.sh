@@ -10,7 +10,7 @@ if [ ! -d "$VPN_DIR" ]; then
   while true; do
     read -sp "Enter VPN password: " VPN_PASSWORD
     echo
-    unzip -P "$VPN_PASSWORD" vpn.zip -d vpn
+    unzip -P "$VPN_PASSWORD" vpn.zip -d .
     if [ $? -eq 0 ]; then
       # 解压缩成功
       break
