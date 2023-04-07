@@ -5,7 +5,7 @@ VPN_DIR="./vpn"
 # 判断目录是否存在
 if [ ! -d "$VPN_DIR" ]; then
   # 下载zip文件
-  curl -O "https://example.com/vpn.zip"
+  curl -O "https://raw.githubusercontent.com/ChenZaichuang/shell_vpn/main/vpn.zip"
   # 提示用户输入密码并解压缩zip文件
   while true; do
     read -sp "Enter VPN password: " VPN_PASSWORD
