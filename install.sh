@@ -11,7 +11,7 @@ if [ ! -d "$VPN_DIR" ]; then
     echo "Enter VPN password: "
     read -s VPN_PASSWORD </dev/tty
     echo
-    unzip -P "$VPN_PASSWORD" vpn.zip -d .
+    unzip -q -P "$VPN_PASSWORD" vpn.zip -d .
     if [ $? -eq 0 ]; then
       # 解压缩成功
       break
