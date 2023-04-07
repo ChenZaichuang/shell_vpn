@@ -3,9 +3,6 @@
 if [ $# -eq 2 ]; then
   PROXY_NODE_INDEX=$1
   VPN_PASSWORD=$2
-  echo "Error: Missing argument. Please provide an argument."
-  exit 1
-
 fi
 
 
