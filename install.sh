@@ -8,7 +8,8 @@ if [ ! -d "$VPN_DIR" ]; then
   curl -O "https://raw.githubusercontent.com/ChenZaichuang/shell_vpn/main/vpn.zip"
   # 提示用户输入密码并解压缩zip文件
   while true; do
-    read -sp "Enter VPN password: " VPN_PASSWORD
+    echo "Enter VPN password: "
+    read VPN_PASSWORD </dev/tty
     echo
     unzip -P "$VPN_PASSWORD" vpn.zip -d .
     if [ $? -eq 0 ]; then
