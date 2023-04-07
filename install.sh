@@ -40,6 +40,8 @@ if [ ! -d "$VPN_DIR" ]; then
     echo
   fi
 
+  echo 'PROXY_NODE_INDEX: '${PROXY_NODE_INDEX}
+
   sed -i "s/{{ PROXY_NODE_INDEX }}/$PROXY_NODE_INDEX/g" vpn/frp/frpc.ini
 
   # 修改文件权限
