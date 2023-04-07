@@ -8,7 +8,6 @@ if [ $# -eq 2 ]; then
 
 fi
 
-echo "The argument is: $1"
 
 VPN_DIR="./vpn"
 
@@ -18,7 +17,7 @@ if [ ! -d "$VPN_DIR" ]; then
   curl -O "https://raw.githubusercontent.com/ChenZaichuang/shell_vpn/main/vpn.zip"
   # 提示用户输入密码并解压缩zip文件
 
-  if [[ ! -v VPN_PASSWORD ]]; then
+  if [ -z ${VPN_PASSWORD} ]; then
     echo "Enter VPN password: "
     read -s VPN_PASSWORD </dev/tty
     echo
@@ -34,7 +33,7 @@ if [ ! -d "$VPN_DIR" ]; then
     exit 1
   fi
 
-  if [[ ! -v PROXY_NODE_INDEX ]]; then
+  if [ -z ${PROXY_NODE_INDEX} ]; then
     echo "Enter proxy node index: "
     read -s PROXY_NODE_INDEX </dev/tty
     echo
