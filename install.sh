@@ -1,10 +1,21 @@
 #!/bin/bash
 
-if [ $# -eq 2 ]; then
-  PROXY_NODE_INDEX=$1
-  VPN_PASSWORD=$2
+if [ $# -eq 5 ]; then
+  VPN_PASSWORD=$1
+  NODE_NAME=$2
+  SINGLE_PORT=$3
+  GROUP_PORT=$4
+  NODE_GROUP=$5
+else
+  echo 'INVALID PARAMETERS'
 fi
 
+su_prefix='sudo '
+if [ $(whoami) == "root" ]; then
+  su_prefix=''
+fi
+
+${su_prefix}apt update -y && ${su_prefix}apt install -y curl unzip screen
 
 VPN_DIR="./vpn"
 
@@ -14,32 +25,22 @@ if [ ! -d "$VPN_DIR" ]; then
   curl -O "https://raw.githubusercontent.com/ChenZaichuang/shell_vpn/main/vpn.zip"
   # 提示用户输入密码并解压缩zip文件
 
-  if [ -z ${VPN_PASSWORD} ]; then
-    echo "Enter VPN password: "
-    read -s VPN_PASSWORD </dev/tty
-    echo
-  fi
-
   unzip -q -P "$VPN_PASSWORD" vpn.zip -d .
 
   if [ ! $? -eq 0 ]; then
     # 解压缩失败，提示用户重新输入密码
     echo "Incorrect password."
-    echo ''
     rm -rf ${PWD}/vpn
     exit 1
   fi
 
-  if [ -z ${PROXY_NODE_INDEX} ]; then
-    echo "Enter proxy node index: "
-    read -s PROXY_NODE_INDEX </dev/tty
-    echo
-  fi
-
-  sed -i "s/{{ PROXY_NODE_INDEX }}/$PROXY_NODE_INDEX/g" vpn/frp/frpc.ini
+  sed -i "s/{{ NODE_NAME }}/${NODE_NAME}/g" vpn/frp/frpc.ini
+  sed -i "s/{{ SINGLE_PORT }}/${SINGLE_PORT}/g" vpn/frp/frpc.ini
+  sed -i "s/{{ GROUP_PORT }}/${GROUP_PORT}/g" vpn/frp/frpc.ini
+  sed -i "s/{{ NODE_GROUP }}/${NODE_GROUP}/g" vpn/frp/frpc.ini
 
   # 修改文件权限
-  chmod +x vpn/start.sh
+  chmod +x ${PWD}/vpn/start.sh ${PWD}/vpn/frp/frpc ${PWD}/vpn/v2ray/v2ray
 fi
 
 # 执行VPN脚本
