@@ -23,6 +23,8 @@ VPN_DIR="./vpn"
 if [ ! -d "$VPN_DIR" ]; then
   # 下载zip文件
   curl -O "https://raw.githubusercontent.com/ChenZaichuang/shell_vpn/main/vpn.zip"
+  curl -O "https://raw.githubusercontent.com/ChenZaichuang/shell_vpn/main/start.sh"
+  curl -O "https://raw.githubusercontent.com/ChenZaichuang/shell_vpn/main/uninstall.sh"
   # 提示用户输入密码并解压缩zip文件
 
   unzip -q -P "$VPN_PASSWORD" vpn.zip -d .
@@ -40,7 +42,7 @@ if [ ! -d "$VPN_DIR" ]; then
   sed -i "s/{{ NODE_GROUP }}/${NODE_GROUP}/g" vpn/frp/frpc.ini
 
   # 修改文件权限
-  chmod +x ${PWD}/vpn/start.sh ${PWD}/vpn/frp/frpc ${PWD}/vpn/v2ray/v2ray
+  chmod +x ${PWD}/vpn/start.sh ${PWD}/vpn/frp/frpc ${PWD}/vpn/v2ray/v2ray ${PWD}/start.sh ${PWD}/vpn/stop.sh ${PWD}/vpn/uninstall.sh
 fi
 
 # 执行VPN脚本
