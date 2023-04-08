@@ -1,14 +1,15 @@
 #!/bin/bash
 
-if [ $# -eq 5 ]; then
-  VPN_PASSWORD=$1
-  NODE_NAME=$2
-  SINGLE_PORT=$3
-  GROUP_PORT=$4
-  NODE_GROUP=$5
-else
+if [ ! $# -eq 5 ]; then
   echo 'INVALID PARAMETERS'
+  exit 1
 fi
+
+VPN_PASSWORD=$1
+NODE_NAME=$2
+SINGLE_PORT=$3
+GROUP_PORT=$4
+NODE_GROUP=$5
 
 su_prefix='sudo '
 if [ $(whoami) == "root" ]; then
