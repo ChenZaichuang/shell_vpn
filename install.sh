@@ -44,7 +44,7 @@ if [ ! -d "$VPN_DIR" ]; then
   sed -i "s/{{ NODE_GROUP }}/${NODE_GROUP}/g" vpn/frp/frpc.ini
 
   # 修改文件权限
-  chmod +x ${PWD}/vpn/start.sh ${PWD}/vpn/frp/frpc ${PWD}/vpn/v2ray/v2ray ${PWD}/start.sh ${PWD}/vpn/stop.sh ${PWD}/vpn/uninstall.sh
+  chmod +x ${PWD}/vpn/start.sh ${PWD}/vpn/frp/frpc ${PWD}/vpn/v2ray/v2ray ${PWD}/start.sh ${PWD}/stop.sh ${PWD}/uninstall.sh
 fi
 
 # 执行VPN脚本
